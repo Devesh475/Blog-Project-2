@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <br>
+    <div  class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;">
+        <div class="card-body" style="margin-right: auto;margin-left: auto; text-align: center;">
+            {% if object.image %}
+                <img src="{{object.image.url}}" alt="" class="card-img-top" style="width: 18rem; position:relative;">
+            {% endif %}
+            <h5 class="card-title" style="padding-top: 5px;">{{object.title}}</h5>
+            {% if object.publish_date is not None %}
+                <small class="text-muted">{{object.publish_date}}</small>
+            {% else %}
+                <small class="text-muted">Not Published</small>
+            {% endif %}
+            <small class="text-muted"><p>Author : {{object.user}}</p></small>
+            <p class="card-text">{{object.content | linebreaks }}</p>
+        </div>
+    </div>
+    <br>
+    <div class="col-12">
+    {% if request.user.is_authenticated %}
+        {% if request.user == object.user %}
+            <a href="{{object.get_edit_url}}"><button type="submit" class="btn btn-outline-success">Edit</button></a>
+            <a href="{{object.get_delete_url}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+        {% endif %}
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class='row'>
+        <div class='col-12 col-8 mx-auto'>
+            {% if query %}
+            <p class='lead'>You searched for {{ query }}</p>
+            {% endif %}
+            {% if qs %}
+                <p>{{qs|length}} results found!</p>
+                {% for x in qs %}
+                <div  class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;">
+                    <div class="card-body">
+                        <h5 class=card-title>{{x.title}}</h5>
+                        <small class="text-muted">{{x.publish_date}}</small>
+                        <p class="card-text">{{x.content | linebreaks | truncatewords:30}}</p>
+                        {% if not object.publish_date %}
+                        Draft
+                        {% endif %}
+                        <a href="{{ x.get_absolute_url }}" class="btn btn-outline-info">View</a>
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+            {% else %}
+                <h4>No matching search results</h4>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

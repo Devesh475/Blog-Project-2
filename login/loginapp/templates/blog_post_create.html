@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br>
+    <div class="card bg-light text-black">
+    <div class="container-fluid" style="width: 100%; margin: 0 auto;">
+    <h3>{{title}}</h3>
+    <form method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <small>* Leave the publish date to save it as draft.</small>
+        <br>
+        <hr>
+        <button type="submit" class="btn btn-outline-success">Create</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

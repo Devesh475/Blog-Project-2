@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <br>
+        <div class="container-fluid">
+                <form method="POST" action=".">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="exampleInputText1" class="form-label">Username</label>
+                          <input type="text" class="form-control" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+                        </div>
+                        {{form.errors}}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        <br>
+        <br>
+        <li>Don't have an account : </li>
+        <br>
+        <a class="btn btn-outline-warning" href="{% url 'register' %}">Register</a>
+        </div>
+{% endblock %}
