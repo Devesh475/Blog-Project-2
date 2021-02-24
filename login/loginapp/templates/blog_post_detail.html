@@ -35,7 +35,8 @@
                     <small class="text-muted">{{comment.date}}</small>
                     <p class="card-text">{{comment.text}}</p>
                     {% if request.user == object.user %}
-                    <a  href="{{comment.deleteURL}}/{{comment.id}}" class="btn btn-outline-danger" style="padding-bottom: 5px; padding-top: 0px;" >Delete Comment</a>
+                    <a  href="{{comment.deleteURL}}/{{comment.id}}" class="btn btn-outline-danger btn-sm" style="width: auto;" >Remove</a>
+                    <br>
                     <br>
                     {% endif %}    
                 {% endfor %}
@@ -47,6 +48,6 @@
     {% block comment %}
     {% endblock %}
     <br>
-    <a href="{{object.get_absolute_url}}/comments" class="btn btn-outline-info">Add Comment</a>
+    <a href="{{object.get_absolute_url}}/comments" class="btn btn-outline-info" >Add Comment</a>
     </div>
 {% endblock %}
