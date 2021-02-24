@@ -20,9 +20,29 @@
     <div class="col-12">
     {% if request.user.is_authenticated %}
         {% if request.user == object.user %}
-            <a href="{{object.get_edit_url}}"><button type="submit" class="btn btn-outline-success">Edit</button></a>
+            <a href="{{object.get_edit_url}}"><button type="submit" class="btn btn-outline-secondary">Edit</button></a>
             <a href="{{object.get_delete_url}}"><button type="submit" class="btn btn-danger">Delete</button></a>
         {% endif %}
     {% endif %}
+    <br>
+    <br>
+
+    <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;">
+        <div class="card-body" style="margin-right: auto;margin-left: auto; text-align: center;">
+            {% if comments %}
+                {% for comment in comments %}
+                    <small class="text-muted">By: {{comment.name}} </small>
+                    <small class="text-muted">{{comment.date}}</small>
+                    <p class="card-text">{{comment.text}}</p>
+                {% endfor %}
+            {% else %}
+                <p>No Comments Yet</p>
+            {% endif %}
+        </div>
+    </div>
+    {% block comment %}
+    {% endblock %}
+    <br>
+    <a href="{{object.get_absolute_url}}/comments" class="btn btn-outline-info">Add Comment</a>
     </div>
 {% endblock %}

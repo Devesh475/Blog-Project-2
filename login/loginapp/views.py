@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Blogpost
+from .models import Blogpost, CommentForm
 from django.http import Http404
-from .forms import BlogPostModelForm
+from .forms import BlogPostModelForm, CommentModelForm
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -113,8 +113,9 @@ def blog_post_create_view(request):
 
 def blog_post_detail_view(request,slug):
     obj = get_object_or_404(Blogpost, slug=slug)
+    comments = CommentForm.objects.filter(post=obj)
     template_name = 'blog_post_detail.html'
-    context = {'object':obj}
+    context = {'object':obj, "comments":comments}
     return render(request, template_name, context) 
 
 @login_required
@@ -137,3 +138,21 @@ def blog_post_delete_view(request,slug):
         return redirect('/blog')
     context = {'object':obj}
     return render(request, template_name, context)
+
+
+def addComment(request, slug):
+    obj = get_object_or_404(Blogpost, slug=slug)
+    comments = CommentForm.objects.filter(post=obj)
+    form = CommentModelForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = obj
+        comment.date = timezone.now()
+        comment.save()
+        return redirect("/blog/{}".format(obj.slug))
+    template_name = "addComment.html"
+    context = {'object':obj,"form":form,"comments":comments}
+    return render(request, template_name, context)
+
+# def deleteComment(request):
+#     obj = get_object_or_404(CommentForm)

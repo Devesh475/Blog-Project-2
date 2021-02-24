@@ -31,3 +31,12 @@ class Blogpost(models.Model):
 
     def get_delete_url(self):
         return f"/blog/{self.slug}/delete"
+
+class CommentForm(models.Model):
+    post = models.ForeignKey(Blogpost, on_delete=models.CASCADE,related_name='allcomments')
+    name = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.text

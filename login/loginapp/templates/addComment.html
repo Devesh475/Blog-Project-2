@@ -1,0 +1,17 @@
+{% extends "blog_post_detail.html" %}
+
+{% block comment %}
+
+<br>
+<div class="card bg-light text-black">
+    <div class="container-fluid" style="width: 100%; margin: 0 auto;">       
+         <form action="" method="POST">
+            {% csrf_token %}
+            <br>
+            {{form.as_p}}
+            <input type="submit" class="btn btn-outline-success">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Blogpost
+from .models import Blogpost, CommentForm
 
 # Method 1 to create an object of form and then save it in views
 # class BlogPostForm(forms.Form):
@@ -24,3 +24,8 @@ class BlogPostModelForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError("Title already exist modify it slightly")
         return title
+
+class CommentModelForm(forms.ModelForm):
+    class Meta:
+        model = CommentForm
+        fields = ['name', 'text']
