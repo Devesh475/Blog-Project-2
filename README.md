@@ -3,6 +3,7 @@
 * In this project we have included the facility of multi-author blogs, which will allow
 the bloggers to interact even with the more people of the same interest.
 * User registration form link present in the navbar for registration of a user.
+* Comments can be done by the any visitor to the website
 * There is a separate admin interface for the superuser of the website to directly do
 the all the change that can be done by the blogger plus some additional
 functionality.

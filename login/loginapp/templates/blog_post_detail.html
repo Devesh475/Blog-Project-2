@@ -34,6 +34,10 @@
                     <small class="text-muted">By: {{comment.name}} </small>
                     <small class="text-muted">{{comment.date}}</small>
                     <p class="card-text">{{comment.text}}</p>
+                    {% if request.user == object.user %}
+                    <a  href="{{comment.deleteURL}}/{{comment.id}}" class="btn btn-outline-danger" style="padding-bottom: 5px; padding-top: 0px;" >Delete Comment</a>
+                    <br>
+                    {% endif %}    
                 {% endfor %}
             {% else %}
                 <p>No Comments Yet</p>

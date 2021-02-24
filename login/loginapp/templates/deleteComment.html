@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %} 
-    <h2>Delete Blog Post</h2>
-    <h4>{{object.title}}</h4>
+    <h2>Delete Comment from Post</h2>
+    <h4>{{object.text}}</h4>
     <p>Are you sure you want to delete ? </p>
     <form action="" method="POST">
         {% csrf_token %}

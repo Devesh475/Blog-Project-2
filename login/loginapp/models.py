@@ -40,3 +40,6 @@ class CommentForm(models.Model):
 
     def __str__(self):
         return self.text
+
+    def deleteURL(self):
+        return f"/blog/{self.post.slug}/comment/delete"

@@ -154,5 +154,11 @@ def addComment(request, slug):
     context = {'object':obj,"form":form,"comments":comments}
     return render(request, template_name, context)
 
-# def deleteComment(request):
-#     obj = get_object_or_404(CommentForm)
+def deleteComment(request,slug, id):
+    obj = get_object_or_404(CommentForm, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect(f"/blog/{slug}")
+    template_name = "deleteComment.html"
+    context = {'object':obj}
+    return render(request, template_name, context)
