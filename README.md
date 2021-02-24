@@ -1,5 +1,5 @@
 # BlogProject
-![Blog site Demo](demo/Blogsite.gif)
+![Blog site Demo](demo/blogsitedemo.gif)
 * In this project we have included the facility of multi-author blogs, which will allow
 the bloggers to interact even with the more people of the same interest.
 * User registration form link present in the navbar for registration of a user.
